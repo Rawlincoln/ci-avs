@@ -1,10 +1,14 @@
 # Same Blueprint as soccer-under-strategy / moon-scanner / pro-trader (Rawlincoln Render account).
 # Connect at https://dashboard.render.com/blueprints/new?repo=https://github.com/Rawlincoln/ci-avs
+# Every push to main auto-deploys the live site.
 services:
   - type: web
     name: ci-avs
     runtime: node
     plan: free
+    repo: https://github.com/Rawlincoln/ci-avs
+    branch: main
+    autoDeployTrigger: commit
     buildCommand: npm ci && npm run build
     startCommand: node .output/server/index.mjs
     healthCheckPath: /
